@@ -19,6 +19,10 @@ module Dingtalktool
 
     def self.post(url, params, data)
       res = RestClient.post joinParams(url, params), data, :content_type => :json, :accept => :json
+      if res.code == 200
+        return resbody = JSON.parse(res.body)
+      end
+      return nil
     end
 
     def self.joinParams(path,params)
@@ -28,7 +32,7 @@ module Dingtalktool
         params.each do |key,value|
           url = url + key.to_s + "=" + value.to_s + "&";
         end
-        url.last == "&" &&  url.chop!
+        url[-1] == "&" &&  url.chop!
       end
       return url
     end
