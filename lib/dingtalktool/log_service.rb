@@ -10,7 +10,7 @@ module Dingtalktool
 
     def self.write(level,msg)
       # TODO: 日志保存位置要修改
-      filename = "./my.log"
+      filename = "log/dingtalktool.log"
       file = File.open(filename, "a")
       file.write("#{level}/#{Time.now}  #{msg}\n")
       file.close

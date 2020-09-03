@@ -1,7 +1,6 @@
 require 'yaml'
 module Dingtalktool
   class CacheService
-
     def self.setJsTicket(ticket)
       set("js_ticket", ticket, ex: 7000); # js ticket有效期为7200秒，这里设置为7000秒
     end
@@ -30,7 +29,7 @@ module Dingtalktool
     def self.set(key,value,options = {})
       ex = options[:ex] ? Time.now.to_i + options[:ex] : 0
       if key && value
-        data = get_file("./filecache.yml")
+        data = get_file("tmp/cache/filecache.yml")
 
         item = {}
         item["#{key}"] = value
@@ -43,7 +42,7 @@ module Dingtalktool
 
     def self.get(key)
       if key && key.is_a?(String)
-        data = get_file("./filecache.yml")
+        data = get_file("tmp/cache/filecache.yml")
         if !data.empty? && data.has_key?(key)
             item = data["#{key}"]
             return false  if !item
@@ -71,6 +70,5 @@ module Dingtalktool
       file.write(content)
       file.close unless file.nil?
     end
-
   end
 end
