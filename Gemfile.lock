@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    dingtalktool (1.0.2)
+    dingtalktool (1.1.0)
       rest-client
 
 GEM
