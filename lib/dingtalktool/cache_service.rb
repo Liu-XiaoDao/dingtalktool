@@ -36,7 +36,7 @@ module Dingtalktool
         item['expire_time'] = ex
         item['create_time'] = Time.now.to_i
         data["#{key}"] = item
-        set_file("./filecache.yml",data.to_json)
+        set_file("tmp/cache/filecache.yml",data.to_json)
       end
     end
 
